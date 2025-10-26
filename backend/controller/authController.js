@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const authservice = require("../services/authservices");
 const utils = require("./utilityController");
-const sendEmail = require("../utils/nodemailer");
+const sendLoginAlert = require("../utils/nodemailer");
 const jwt = require("jsonwebtoken");
 
 const CreateAcct = async (req, res) => {
@@ -25,7 +25,7 @@ const CreateAcct = async (req, res) => {
     });
 
     try {
-      await sendEmail(email, "welcomeMail");
+      await sendLoginAlert(email, "welcomeMail");
     } catch (err) {
       console.error("Mail error:", err);
     }
@@ -76,7 +76,7 @@ const login = async (req, res) => {
     }
 
     try {
-      await sendEmail(email, "loginMail");
+      await sendLoginAlert(email, "loginMail");
     } catch (err) {
       console.error("Mail error:", err);
     }
